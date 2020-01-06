@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-01-2020 18:15:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cl.demochl.model.Factura" table="factura" catalog="sesion_08" optimistic-lock="version">
+        <id name="numFactura" type="java.lang.Integer">
+            <column name="numFactura" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="cliente" class="cl.demochl.model.Cliente" fetch="select">
+            <column name="idCliente" not-null="true" />
+        </many-to-one>
+        <property name="fecha" type="timestamp">
+            <column name="Fecha" length="19" />
+        </property>
+        <property name="subtotal" type="java.lang.Float">
+            <column name="Subtotal" precision="12" scale="0" />
+        </property>
+        <property name="iva" type="java.lang.Float">
+            <column name="IVA" precision="12" scale="0" />
+        </property>
+        <property name="total" type="java.lang.Float">
+            <column name="Total" precision="12" scale="0" />
+        </property>
+        <set name="facturaHasProductos" table="factura_has_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="numFactura" not-null="true" />
+            </key>
+            <one-to-many class="cl.demochl.model.FacturaHasProducto" />
+        </set>
+    </class>
+</hibernate-mapping>

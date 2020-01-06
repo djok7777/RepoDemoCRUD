@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-01-2020 18:15:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cl.demochl.model.Producto" table="producto" catalog="sesion_08" optimistic-lock="version">
+        <id name="idProducto" type="java.lang.Integer">
+            <column name="idProducto" />
+            <generator class="identity" />
+        </id>
+        <property name="nombre" type="string">
+            <column name="Nombre" length="150" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="Descripcion" length="150" />
+        </property>
+        <property name="unidad" type="string">
+            <column name="Unidad" length="45" />
+        </property>
+        <property name="precioUnitario" type="java.lang.Float">
+            <column name="PrecioUnitario" precision="12" scale="0" />
+        </property>
+        <set name="facturaHasProductos" table="factura_has_producto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="idProducto" not-null="true" />
+            </key>
+            <one-to-many class="cl.demochl.model.FacturaHasProducto" />
+        </set>
+    </class>
+</hibernate-mapping>

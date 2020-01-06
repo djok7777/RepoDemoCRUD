@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 05-01-2020 18:15:22 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="cl.demochl.model.FacturaHasProducto" table="factura_has_producto" catalog="sesion_08" optimistic-lock="version">
+        <composite-id name="id" class="cl.demochl.model.FacturaHasProductoId">
+            <key-property name="numFactura" type="int">
+                <column name="numFactura" />
+            </key-property>
+            <key-property name="idProducto" type="int">
+                <column name="idProducto" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="factura" class="cl.demochl.model.Factura" update="false" insert="false" fetch="select">
+            <column name="numFactura" not-null="true" />
+        </many-to-one>
+        <many-to-one name="producto" class="cl.demochl.model.Producto" update="false" insert="false" fetch="select">
+            <column name="idProducto" not-null="true" />
+        </many-to-one>
+        <property name="cantidad" type="java.lang.Integer">
+            <column name="Cantidad" />
+        </property>
+        <property name="precioTotal" type="java.lang.Float">
+            <column name="PrecioTotal" precision="12" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>
